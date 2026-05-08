@@ -9,7 +9,7 @@ const HomeLayout = () => {
         <nav className="navbar bg-pink-100 fixed top-0 z-10">
           <Navbar></Navbar>
         </nav>
-        <section>
+        <section className="w-11/12 mx-auto mt-20 mb-8">
           <Header></Header>
         </section>
       </header>
