@@ -1,4 +1,3 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import img1 from "./../assets/chef-1.jpg";
 import img2 from "./../assets/chef-2.jpg";
@@ -30,6 +29,10 @@ const Header = () => {
       title: "Chef Image 3",
     },
     {
+      image: img4,
+      title: "Chef Image 4",
+    },
+    {
       image: img5,
       title: "Chef Image 5",
     },
@@ -59,11 +62,11 @@ const Header = () => {
         {sliders.map((slider, index) => (
           <SwiperSlide key={index}>
             <img
-              className="w-full object-cover h-136"
+              className="w-full h-152 rounded-2xl"
               src={slider.image}
               alt=""
             />
-            <h3 className="text-2xl font-bold text-center">{slider.title}</h3>
+            {/* <h3 className="text-2xl font-bold text-center">{slider.title}</h3> */}
           </SwiperSlide>
         ))}
       </Swiper>

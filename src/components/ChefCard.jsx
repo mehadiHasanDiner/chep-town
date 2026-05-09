@@ -1,4 +1,3 @@
-import React from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { Link } from "react-router";
 
@@ -24,7 +23,7 @@ const ChefCard = ({ chef }) => {
       </figure>
 
       {/* Content */}
-      <div className="card-body bg-gradient-to-br from-slate-700 to-slate-800 text-white">
+      <div className="card-body bg-linear-to-br from-slate-700 to-slate-800 text-white">
         <h2 className="card-title text-3xl font-bold text-pink-300">
           {chefName}
         </h2>
