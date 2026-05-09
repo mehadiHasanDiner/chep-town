@@ -1,7 +1,7 @@
-import { FaGithub } from "react-icons/fa6";
 import { NavLink } from "react-router";
 import { Link } from "react-router";
 import { RiMenu2Fill } from "react-icons/ri";
+import { BiLogIn } from "react-icons/bi";
 
 const Navbar = () => {
   const links = (
@@ -9,11 +9,11 @@ const Navbar = () => {
       <NavLink to="/">
         <li>Home</li>
       </NavLink>
-      <NavLink to="/appDetails">
-        <li>Apps</li>
+      <NavLink to="/blogs">
+        <li>Blogs</li>
       </NavLink>
-      <NavLink to="/installation">
-        <li>Installation</li>
+      <NavLink to="/about-us">
+        <li>About Us</li>
       </NavLink>
     </>
   );
@@ -41,10 +41,10 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-2 gap-5 ">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="https://github.com/mehadiHasanDiner" target="_blank">
+        <Link to="/login">
           <button className="btn btn-primary bg-linear-to-r from-purple-600 to-pink-500 border-0">
-            <FaGithub />
-            Contribution
+            <BiLogIn size={20} />
+            Login
           </button>
         </Link>
       </div>
