@@ -2,8 +2,11 @@ import { NavLink } from "react-router";
 import { Link } from "react-router";
 import { RiMenu2Fill } from "react-icons/ri";
 import { BiLogIn } from "react-icons/bi";
+import { AuthContext } from "../provider/AuthProvider";
+import { use } from "react";
 
 const Navbar = () => {
+  const { user } = use(AuthContext);
   const links = (
     <>
       <NavLink to="/">
@@ -32,15 +35,14 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to={"/"} className="flex">
-          <p className="text-2xl font-bold  bg-linear-to-r from-pink-600 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
-            Chef Town
-          </p>
+          <p className="text-2xl font-bold color-primary">Chef Town</p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-2 gap-5 ">{links}</ul>
       </div>
       <div className="navbar-end">
+        {user && <p className="mr-3">{user.email}</p>}
         <Link to="/login">
           <button className="btn btn-primary bg-linear-to-r from-purple-600 to-pink-500 border-0">
             <BiLogIn size={20} />

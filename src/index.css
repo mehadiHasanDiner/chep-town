@@ -22,3 +22,15 @@
 a.active {
   @apply text-pink-700 underline underline-offset-4 decoration-[3px] pb-0.5 hover:font-bold;
 }
+
+@layer components {
+  .color-primary {
+    @apply bg-linear-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent;
+  }
+}
+
+@layer components {
+  .color-btn {
+    @apply bg-linear-to-r from-purple-600 to-pink-500;
+  }
+}
