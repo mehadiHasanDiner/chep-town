@@ -5,7 +5,10 @@ import { FcGoogle } from "react-icons/fc";
 const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("submitted");
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
   };
   return (
     <div className=" flex justify-center items-center ">
