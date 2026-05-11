@@ -6,7 +6,17 @@ import { AuthContext } from "../provider/AuthProvider";
 import { use } from "react";
 
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, logOut } = use(AuthContext);
+  const emailSlice = user?.email.slice(0, 2).toUpperCase();
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        alert("Logout successful");
+      })
+      .catch((error) => console.log(error));
+  };
+
   const links = (
     <>
       <NavLink to="/">
@@ -42,13 +52,33 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-2 gap-5 ">{links}</ul>
       </div>
       <div className="navbar-end">
-        {user && <p className="mr-3">{user.email}</p>}
-        <Link to="/login">
-          <button className="btn btn-primary bg-linear-to-r from-purple-600 to-pink-500 border-0">
-            <BiLogIn size={20} />
-            Login
-          </button>
-        </Link>
+        {user ? (
+          <div className="dropdown dropdown-hover dropdown-center">
+            <button
+              tabIndex={0}
+              role="button"
+              className="btn btn-circle text-lg bg-linear-to-r from-purple-600 to-pink-500 border border-black text-white w-11 h-11"
+            >
+              {emailSlice}
+            </button>
+
+            <ul tabIndex="-1" className="dropdown-content menu z-1">
+              <li>
+                <button onClick={handleLogout} className="btn btn-primary">
+                  <BiLogIn size={20} />
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <Link to="/login">
+            <button className="btn btn-primary bg-linear-to-r from-purple-600 to-pink-500 border-0">
+              <BiLogIn size={20} />
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -1,11 +1,28 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
+  const { createUser, setUser } = use(AuthContext);
   const [nameError, setNameError] = useState("");
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log("registered");
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        form.reset();
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
   return (
     <div className=" flex justify-center items-center ">
