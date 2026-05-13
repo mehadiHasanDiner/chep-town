@@ -1,14 +1,25 @@
 import { Link } from "react-router";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { use } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
+  const { loginUser } = use(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    loginUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
   };
   return (
     <div className=" flex justify-center items-center ">

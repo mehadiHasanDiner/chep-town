@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router";
 import { FaThumbsUp, FaUtensils, FaBriefcase } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import RecipesCard from "../components/RecipesCard";
 
 const Chef = () => {
   const chefsData = useLoaderData();
@@ -23,7 +24,6 @@ const Chef = () => {
         setRecipes(data);
       });
   }, []);
-  console.log(recipes);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
@@ -95,9 +95,15 @@ const Chef = () => {
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="recipe_modal" className="modal-toggle" />
       <div className="modal" role="dialog">
-        <div className="modal-box w-11/12 max-w-3xl">
-          <h3 className="text-lg font-bold">Hello!</h3>
-          <p className="py-4">This modal works with a hidden checkbox!</p>
+        <div className="modal-box w-11/12 max-w-4xl">
+          <h3 className="text-xl font-bold">
+            {chefName}'s Top {recipes.length} Recipes
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            {recipes.map((recipe) => (
+              <RecipesCard recipe={recipe} key={recipe.id}></RecipesCard>
+            ))}
+          </div>
           <div className="modal-action">
             <label
               htmlFor="recipe_modal"
