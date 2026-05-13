@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AboutUs from "../pages/AboutUs";
 import Blogs from "../pages/Blog";
-import Chefs from "../pages/Chefs";
+import Chef from "../pages/Chef";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
         loader: () =>
           fetch(
-            "https://assignment-10-awesome-chefs-m-65-server.vercel.app/chefs"
+            "https://assignment-10-awesome-chefs-m-65-server.vercel.app/chefs",
           ),
       },
       {
@@ -26,7 +26,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/chef/:id",
-        element: <Chefs></Chefs>,
+        element: <Chef></Chef>,
+        loader: ({ params }) =>
+          fetch(
+            `https://assignment-10-awesome-chefs-m-65-server.vercel.app/chef/${params.id}`,
+          ),
       },
       {
         path: "/register",
