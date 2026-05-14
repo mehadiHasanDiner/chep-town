@@ -4,7 +4,6 @@ import Header from "../components/Header";
 
 const Home = () => {
   const chefs = useLoaderData();
-  console.log(chefs);
   return (
     <>
       <section className="w-11/12 mx-auto mt-22 mb-8 ">

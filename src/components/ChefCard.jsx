@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { Link } from "react-router";
 
 const ChefCard = ({ chef }) => {
+  const [clickLike, setClickLike] = useState(1);
   const {
     id,
     chefName,
