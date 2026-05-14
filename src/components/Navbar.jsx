@@ -54,7 +54,42 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-2 gap-5 ">{links}</ul>
       </div>
       <div className="navbar-end">
-        {user ? <>{user.photoURL && imgError ? <></> : <></>}</> : <></>}
+        {user ? (
+          <div className="dropdown dropdown-center">
+            <button
+              tabIndex={0}
+              role="button"
+              className="btn btn-circle text-lg bg-linear-to-r from-purple-600 to-pink-500 border border-black text-white w-11 h-11 p-0 overflow-hidden"
+            >
+              {user.photoURL && !imgError ? (
+                <img
+                  src={user.photoURL}
+                  alt="User Profile"
+                  className="w-full h-full object-cover rounded-full"
+                  onError={() => setImgError(true)}
+                />
+              ) : (
+                emailSlice
+              )}
+            </button>
+
+            <ul tabIndex="-1" className="dropdown-content menu z-1">
+              <li>
+                <button onClick={handleLogout} className="btn btn-primary">
+                  <BiLogIn size={20} />
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <Link to="/login">
+            <button className="btn btn-primary bg-linear-to-r from-purple-600 to-pink-500 border-0">
+              <BiLogIn size={20} />
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
