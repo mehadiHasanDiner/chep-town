@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { Link } from "react-router";
+import { Toaster, toast } from "react-hot-toast";
 
 const ChefCard = ({ chef }) => {
-  const [clickLike, setClickLike] = useState(1);
   const {
     id,
     chefName,
@@ -12,6 +12,16 @@ const ChefCard = ({ chef }) => {
     numberOfRecipes,
     likes,
   } = chef;
+
+  const [likeClick, setLikeClick] = useState(likes);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const handleLikes = () => {
+    const updatedLikes = likeClick + 1;
+    setLikeClick(updatedLikes);
+    toast.success("Thanks for giving Like");
+    setIsDisabled(true);
+  };
 
   return (
     <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-3xl overflow-hidden hover:shadow-2xl transition duration-300">
@@ -44,13 +54,22 @@ const ChefCard = ({ chef }) => {
 
         {/* Bottom Section */}
         <div className="flex items-center justify-between mt-6">
+          <Toaster position="top-center" reverseOrder={false} />
           {/* Likes */}
-          <div className="flex items-center gap-3 bg-slate-900 px-5 py-3 rounded-2xl">
+          <button
+            onClick={handleLikes}
+            disabled={isDisabled}
+            className={`flex items-center gap-3 bg-slate-900 px-5 py-3 rounded-2xl cursor-pointer ${
+              isDisabled ? "cursor-not-allowed opacity-50" : ""
+            }`}
+          >
             <FaThumbsUp className="text-yellow-400 text-xl" />
             <span className="font-bold text-lg">
-              {likes >= 1000 ? `${(likes / 1000).toFixed(2)}K` : likes}
+              {likeClick >= 1000
+                ? `${(likeClick / 1000).toFixed(3)}K`
+                : likeClick}
             </span>
-          </div>
+          </button>
 
           {/* Button */}
           <Link to={`/chef/${id}`}>

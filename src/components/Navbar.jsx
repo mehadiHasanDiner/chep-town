@@ -9,7 +9,8 @@ import { useState } from "react";
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
   const [imgError, setImgError] = useState(false);
-  const emailSlice = user?.email.slice(0, 2).toUpperCase();
+  const emailSlice = user?.displayName.slice(0, 2).toUpperCase();
+  // console.log(user.photoURL);
 
   const handleLogout = () => {
     logOut()

@@ -5,7 +5,7 @@ import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
-  const { loginUser, signInWithGoogle } = use(AuthContext);
+  const { loginUser, signInWithGoogle, signInWithGithub } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -28,6 +28,19 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    signInWithGithub()
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -91,7 +104,10 @@ const Login = () => {
           >
             <FcGoogle size={24} /> Login with Google
           </button>
-          <button className="btn btn-primary w-full">
+          <button
+            onClick={handleGithubSignIn}
+            className="btn btn-primary w-full"
+          >
             <FaGithub size={24} /> Login with Github
           </button>
         </div>
