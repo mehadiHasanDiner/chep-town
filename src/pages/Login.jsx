@@ -1,11 +1,14 @@
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
-  const { loginUser } = use(AuthContext);
+  const { loginUser, signInWithGoogle } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,10 +18,24 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         const errorMessage = error.message;
         alert(errorMessage);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
       });
   };
   return (
@@ -68,7 +85,10 @@ const Login = () => {
           </fieldset>
         </form>
         <div className="space-y-2">
-          <button className="btn btn-neutral w-full">
+          <button
+            onClick={handleGoogleSignIn}
+            className="btn btn-neutral w-full"
+          >
             <FcGoogle size={24} /> Login with Google
           </button>
           <button className="btn btn-primary w-full">
