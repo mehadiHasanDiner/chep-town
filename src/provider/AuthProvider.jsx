@@ -12,6 +12,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
 const auth = getAuth(app);
@@ -22,7 +23,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(user);
+  // console.log(user);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -35,11 +36,18 @@ const AuthProvider = ({ children }) => {
   };
 
   const signInWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const signInWithGithub = () => {
+    setLoading(true);
     return signInWithPopup(auth, gitHubProvider);
+  };
+
+  const updateUser = (updatedUserData) => {
+    setLoading(true);
+    return updateProfile(auth.currentUser, updatedUserData);
   };
 
   const logOut = () => {
@@ -63,6 +71,7 @@ const AuthProvider = ({ children }) => {
     loginUser,
     signInWithGoogle,
     signInWithGithub,
+    updateUser,
     logOut,
     loading,
     setLoading,

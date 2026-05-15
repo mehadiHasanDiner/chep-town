@@ -6,12 +6,12 @@ import Loading from "../pages/Loading";
 const PrivateRoute = ({ children }) => {
   const { user, loading } = use(AuthContext);
   const location = useLocation();
-  console.log(location);
+
   if (loading) {
     return <Loading />;
   }
 
-  if (user && user.email) {
+  if (user) {
     return children;
   }
   return <Navigate state={location.pathname} to="/login"></Navigate>;

@@ -17,7 +17,7 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
@@ -30,7 +30,7 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
@@ -43,7 +43,7 @@ const Login = () => {
     signInWithGithub()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {

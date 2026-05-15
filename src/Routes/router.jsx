@@ -7,6 +7,7 @@ import AboutUs from "../pages/AboutUs";
 import Blogs from "../pages/Blog";
 import Chef from "../pages/Chef";
 import PrivateRoute from "./PrivateRoute";
+import Loading from "../pages/Loading";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
           fetch(
             "https://assignment-10-awesome-chefs-m-65-server.vercel.app/chefs"
           ),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/login",
@@ -36,6 +38,7 @@ export const router = createBrowserRouter([
           fetch(
             `https://assignment-10-awesome-chefs-m-65-server.vercel.app/chef/${params.id}`
           ),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/register",
