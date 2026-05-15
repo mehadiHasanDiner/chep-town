@@ -4,7 +4,7 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 Currently, two official plugins are available:
 
-- [Live Link](https://chef-town-auth-route-assign-9.web.app/about-us)
+- [Live Link](https://chef-town-auth-route-assign-9.web.app)
 
 ## React Compiler
 
